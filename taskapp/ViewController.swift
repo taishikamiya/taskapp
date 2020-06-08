@@ -13,6 +13,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var searchBar: UISearchBar!  // search bar
+    
+    
     let realm = try! Realm()
     
     //DB内のタスクが格納されるリスト
