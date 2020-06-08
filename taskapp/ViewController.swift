@@ -9,12 +9,12 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var searchBar: UISearchBar!  // search bar
-    
+    var searchText: String? = ""
     
     let realm = try! Realm()
     
@@ -23,16 +23,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //以降内容をアップデートするとリスト内は自動的に更新される。
     var taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true)
     
+    //検索結果格納用
+    var resultArray: [Task] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        
+        searchBar.delegate  =  self
+        searchBar.placeholder = "category名で検索"
+        
+    }
+
+    
+    //検索
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+//        print(searchBar.text!)
+        searchText = searchBar.text!
+        print(resultArray.count)
     }
 
     //データの数を返すメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchText != "" {
+            print(resultArray.count)
+            return  resultArray.count
+        } else {
         return taskArray.count
+        }
     }
 
     
@@ -44,7 +65,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Cellに値を設定する
         let task = taskArray[indexPath.row]
         cell.textLabel?.text = task.title
-        
+
+        //category
+        cell.detailTextLabel?.text = task.category  // 一旦detailTextLabelというのを使う。
+
+        //  セルのcategory名を検索Wordと比較
+            if searchText == task.category {
+                resultArray.append(task)
+            }
+
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         
@@ -53,6 +82,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         return cell
     }
+    
     
     //各セルを選択したときに実行されるメソッド
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
