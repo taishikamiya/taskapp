@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class InputViewController: UIViewController {
+class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var titleTextField: UITextField!
     
@@ -20,17 +20,27 @@ class InputViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    //カテゴリ選択用ピッカー
-    var pickerView: UIPickerView = UIPickerView()
-    
     
     let realm = try! Realm()
     var task: Task!
-    
+    var cat: Category!
+
+    //カテゴリ選択用ピッカー
+    var pickerView: UIPickerView = UIPickerView()
+    var dataList: [String] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        pickerView.delegate = self
+        categoryTextField.inputView = pickerView
+        
+        let allCategory = realm.objects(Category.self)
+        if allCategory.count != 0 {
+//            cat.catId = allCategory.max(ofProperty: "catId")! + 1
+            dataList = allCategory.value(forKey: "catName") as! [String]
+        }
         
         //背景をタップしたらdismissKeyboardメソッドを呼ぶ
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(dismissKeyboard))
@@ -45,6 +55,20 @@ class InputViewController: UIViewController {
     @objc func dismissKeyboard() {
         //キーボードを閉じる
         view.endEditing(true)
+    }
+    
+    // picker view
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return dataList.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return ""
+       return dataList[row]
     }
     
     override func viewWillDisappear(_ animated: Bool) {
