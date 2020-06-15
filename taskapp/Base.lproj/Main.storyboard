@@ -137,6 +137,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzk-rn-gtR">
+                                <rect key="frame" x="374" y="171" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <segue destination="S4S-a7-URK" kind="show" id="Q9d-Nl-4vg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -175,6 +183,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0n8-zo-LVF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1959" y="118"/>
+        </scene>
+        <!--Category View Controller-->
+        <scene sceneID="VWA-vB-haY">
+            <objects>
+                <viewController id="S4S-a7-URK" customClass="CategoryViewController" customModule="taskapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DPO-8o-Gcj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="41r-lz-LyB">
+                                <rect key="frame" x="10" y="129" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwX-OV-qzw">
+                                <rect key="frame" x="185.5" y="213" width="43" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Add"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Catergory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VB-Qa-IiT">
+                                <rect key="frame" x="10" y="98" width="394" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="41r-lz-LyB" firstAttribute="leading" secondItem="LSV-I0-asa" secondAttribute="leading" constant="10" id="Iff-3I-39H"/>
+                            <constraint firstItem="hwX-OV-qzw" firstAttribute="top" secondItem="41r-lz-LyB" secondAttribute="bottom" constant="50" id="PuI-x5-OjV"/>
+                            <constraint firstItem="0VB-Qa-IiT" firstAttribute="top" secondItem="LSV-I0-asa" secondAttribute="top" constant="10" id="SIH-7X-h47"/>
+                            <constraint firstItem="LSV-I0-asa" firstAttribute="trailing" secondItem="0VB-Qa-IiT" secondAttribute="trailing" constant="10" id="dvB-4x-jTz"/>
+                            <constraint firstItem="hwX-OV-qzw" firstAttribute="centerX" secondItem="DPO-8o-Gcj" secondAttribute="centerX" id="mtp-lx-V3B"/>
+                            <constraint firstItem="LSV-I0-asa" firstAttribute="trailing" secondItem="41r-lz-LyB" secondAttribute="trailing" constant="10" id="qb7-Mu-3ap"/>
+                            <constraint firstItem="41r-lz-LyB" firstAttribute="top" secondItem="0VB-Qa-IiT" secondAttribute="bottom" constant="10" id="vaF-xS-BAR"/>
+                            <constraint firstItem="0VB-Qa-IiT" firstAttribute="leading" secondItem="LSV-I0-asa" secondAttribute="leading" constant="10" id="wOq-MP-ip2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LSV-I0-asa"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UNw-P6-8g9"/>
+                    <connections>
+                        <outlet property="newCategoryField" destination="41r-lz-LyB" id="bwf-d6-hQt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5k-Cp-7up" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2912" y="118"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WiG-Bp-ZXw">

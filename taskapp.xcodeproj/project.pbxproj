@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3327F447249505E2002BAF31 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3327F446249505E2002BAF31 /* CategoryViewController.swift */; };
 		33398A2E248CD4670090B689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33398A2D248CD4670090B689 /* AppDelegate.swift */; };
 		33398A30248CD4670090B689 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33398A2F248CD4670090B689 /* SceneDelegate.swift */; };
 		33398A32248CD4670090B689 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33398A31248CD4670090B689 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3327F446249505E2002BAF31 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		33398A2A248CD4670090B689 /* taskapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taskapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33398A2D248CD4670090B689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33398A2F248CD4670090B689 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				33398A2F248CD4670090B689 /* SceneDelegate.swift */,
 				33398A31248CD4670090B689 /* ViewController.swift */,
 				33398A41248CE1880090B689 /* InputViewController.swift */,
+				3327F446249505E2002BAF31 /* CategoryViewController.swift */,
 				339E4140248CFF9D004D6C26 /* Task.swift */,
 				33398A33248CD4670090B689 /* Main.storyboard */,
 				33398A36248CD46A0090B689 /* Assets.xcassets */,
@@ -216,6 +219,7 @@
 				33398A2E248CD4670090B689 /* AppDelegate.swift in Sources */,
 				339E4141248CFF9D004D6C26 /* Task.swift in Sources */,
 				33398A30248CD4670090B689 /* SceneDelegate.swift in Sources */,
+				3327F447249505E2002BAF31 /* CategoryViewController.swift in Sources */,
 				33398A42248CE1880090B689 /* InputViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

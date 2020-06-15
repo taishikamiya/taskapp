@@ -20,6 +20,10 @@ class InputViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    //カテゴリ選択用ピッカー
+    var pickerView: UIPickerView = UIPickerView()
+    
+    
     let realm = try! Realm()
     var task: Task!
     
@@ -33,7 +37,7 @@ class InputViewController: UIViewController {
         self.view.addGestureRecognizer(tapGesture)
         
         titleTextField.text = task.title
-        categoryTextField.text = task.category  //0608
+        categoryTextField.text = task.category //0608
         contentsTextView.text = task.contents
         datePicker.date = task.date
     }
@@ -96,7 +100,29 @@ class InputViewController: UIViewController {
             }
         }
     }
+    
+    //入力画面から帰ってきたときにTableViewを更新させる
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        categoryTextField.reloadInputViews()
+    }
 
+    
+    //segueで画面遷移するときに呼ばれる
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        let categoryViewController:CategoryViewController = segue.destination as! CategoryViewController
+        
+            let cat = Category()
+            
+            let allCategory = realm.objects(Category.self)
+            if allCategory.count != 0 {
+                cat.catId = allCategory.max(ofProperty: "catId")! + 1
+            }
+            
+            categoryViewController.cat = cat
+        
+    }
+    
     /*
     // MARK: - Navigation
 
