@@ -13,6 +13,8 @@ class CategoryViewController: UIViewController {
 
     @IBOutlet weak var newCategoryField: UITextField!
 
+    var resultHandler: ((String) -> Void)?  //遷移先から処理を受け取る
+
     let realm = try! Realm()
     var cat: Category!
     
@@ -25,18 +27,27 @@ class CategoryViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         try! realm.write{
             //print(self.newCategoryField.text!)
-            if self.newCategoryField.text != nil {
-                           
-//                let allCategory = realm.objects(Category.self)
-//                if allCategory.count != 0 {
-//                    self.cat.catId = allCategory.count
-//                }
+            if newCategoryField.text != nil {
                 
-                self.cat.categoryName = self.newCategoryField.text!
-                print("categooryName = \(cat.categoryName)")
+                cat.categoryName = newCategoryField.text!
+                print("catId = \(cat.catId), categooryName = \(cat.categoryName)")
             }
         }
         super.viewWillDisappear(animated)
+    }
+    
+    
+    @IBAction func addCategory(_ sender: Any) {
+        //nilチェック
+        guard let text = self.newCategoryField.text else {return}
+        
+        //
+        if let handler = self.resultHandler {
+            handler(text)
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+//        performSegue(withIdentifier: "addCatSegue", sender: nil)
     }
     
 

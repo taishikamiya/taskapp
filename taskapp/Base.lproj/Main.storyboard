@@ -142,7 +142,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="+"/>
                                 <connections>
-                                    <segue destination="S4S-a7-URK" kind="show" id="Q9d-Nl-4vg"/>
+                                    <segue destination="S4S-a7-URK" kind="show" identifier="addCatSegue" id="Q9d-Nl-4vg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -201,6 +201,9 @@
                                 <rect key="frame" x="185.5" y="213" width="43" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addCategory:" destination="S4S-a7-URK" eventType="touchUpInside" id="Hcs-Cp-zMG"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Catergory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VB-Qa-IiT">
                                 <rect key="frame" x="10" y="98" width="394" height="21"/>
@@ -251,6 +254,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tFH-92-T09"/>
+        <segue reference="Kzt-9w-0AU"/>
     </inferredMetricsTieBreakers>
 </document>
