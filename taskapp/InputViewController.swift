@@ -37,6 +37,7 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if allCategory.count != 0 {
 //            cat.catId = allCategory.max(ofProperty: "catId")! + 1
             dataList = allCategory.value(forKey: "catName") as! [String]
+//            dataList = cat.categoryName as! [String]
         }
         
         //背景をタップしたらdismissKeyboardメソッドを呼ぶ
@@ -57,7 +58,7 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     
-    // Picker
+    // Picker test用
     var data = ["A1","B2","C3"]
     
     // picker view
@@ -68,13 +69,14 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 //        return dataList.count
         return data.count
+//        return cat.categoryName.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 //        return ""
-//       return dataList[row]
-//        return dataList[row]
         data[row]
+//        return cat.categoryName[row]
+
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

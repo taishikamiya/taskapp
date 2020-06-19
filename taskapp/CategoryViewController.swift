@@ -29,8 +29,9 @@ class CategoryViewController: UIViewController {
             //print(self.newCategoryField.text!)
             if newCategoryField.text != nil {
                 
-                cat.categoryName = newCategoryField.text!
+                self.cat.categoryName = self.newCategoryField.text!
                 print("catId = \(cat.catId), categooryName = \(cat.categoryName)")
+                self.realm.add(self.cat, update: .modified)
             }
         }
         super.viewWillDisappear(animated)
@@ -47,7 +48,7 @@ class CategoryViewController: UIViewController {
         }
         
         self.dismiss(animated: true, completion: nil)
-//        performSegue(withIdentifier: "addCatSegue", sender: nil)
+     //   performSegue(withIdentifier: "addCatSegue", sender: nil)
     }
     
 
