@@ -202,7 +202,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Add"/>
                                 <connections>
-                                    <action selector="addCategory:" destination="S4S-a7-URK" eventType="touchUpInside" id="Hcs-Cp-zMG"/>
+                                    <action selector="addCategory:" destination="S4S-a7-URK" eventType="touchUpInside" id="HGL-Kd-LnK"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Catergory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VB-Qa-IiT">

@@ -22,24 +22,15 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     let realm = try! Realm()
     var task: Task!
-    var cat: Category!
+//    var cat: Category!
+    var cat = try! Realm().objects(Category.self)
 
     //カテゴリ選択用ピッカー
     var pickerView: UIPickerView = UIPickerView()
-    var dataList: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
-        let allCategory = realm.objects(Category.self)
-        if allCategory.count != 0 {
-//            cat.catId = allCategory.max(ofProperty: "catId")! + 1
-            dataList = allCategory.value(forKey: "catName") as! [String]
-//            dataList = cat.categoryName as! [String]
-        }
-        
         //背景をタップしたらdismissKeyboardメソッドを呼ぶ
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
@@ -67,21 +58,22 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return dataList.count
-        return data.count
+//        return data.count
+        return cat.count
 //        return cat.categoryName.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return cat[row].categoryName
 //        return ""
-        data[row]
+//        data[row]
 //        return cat.categoryName[row]
 
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        categoryTextField.text = dataList[row]
-            categoryTextField.text = data[row]
+//            categoryTextField.text = data[row]
+        categoryTextField.text = cat[row].categoryName
     }
     
     func createPickerView(){
@@ -178,7 +170,6 @@ class InputViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             categoryViewController.cat = cat
         print("test\(cat)")
             }
-
     }
      
     

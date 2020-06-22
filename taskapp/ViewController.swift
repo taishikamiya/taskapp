@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,6 +17,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var searchText: String? = ""
     
     let realm = try! Realm()
+    
+    var cat = try! Realm().objects(Category.self)
+    
+    var pickerView:  UIPickerView = UIPickerView()
+    
     
     //DB内のタスクが格納されるリスト
     //日付の近い順でソート：昇順
@@ -36,9 +41,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         searchBar.placeholder = "category名で検索"
         searchBar.showsCancelButton =  true
 //        searchBar.showsSearchResultsButton = true
-        
+     
+        createPickerView()
     }
 
+//PickerView
+    
+    // picker view
+        func numberOfComponents(in pickerView: UIPickerView) -> Int {
+            return 1
+        }
+        
+        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            return cat.count
+        }
+
+        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+            return cat[row].categoryName
+        }
+        
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        searchBar.text = cat[row].categoryName
+        }
+    
+    func createPickerView(){
+        pickerView.delegate = self
+        //ここが解決してない。searchBarをタップしてpickerを表示したい。
+//        searchBar.inputView = self.pickerView
+
+        //toolbar
+        let toolbar = UIToolbar()
+        toolbar.frame =  CGRect(x:0, y:0, width:self.view.frame.width, height:44)
+        let doneButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(InputViewController.donePicker))
+        toolbar.setItems([doneButtonItem], animated: true)
+        searchBar.inputAccessoryView = toolbar
+    }
+
+    @objc func donePicker() {
+        searchBar.endEditing(true)
+    }
+    
+    
     // xボタンが押されたときの処理
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {

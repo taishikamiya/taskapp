@@ -28,17 +28,19 @@ class CategoryViewController: UIViewController {
         try! realm.write{
             //print(self.newCategoryField.text!)
             if newCategoryField.text != nil {
-                
-                self.cat.categoryName = self.newCategoryField.text!
-                print("catId = \(cat.catId), categooryName = \(cat.categoryName)")
-                self.realm.add(self.cat, update: .modified)
+                if newCategoryField.text != "" {
+                    self.cat.categoryName = self.newCategoryField.text!
+                    print("catId = \(cat.catId), categooryName = \(cat.categoryName)")
+                    self.realm.add(self.cat, update: .modified)
+                }
             }
         }
         super.viewWillDisappear(animated)
     }
     
-    
+//    @IBAction func addCategory(segue: UIStoryboardSegue){
     @IBAction func addCategory(_ sender: Any) {
+        
         //nilチェック
         guard let text = self.newCategoryField.text else {return}
         
@@ -47,8 +49,8 @@ class CategoryViewController: UIViewController {
             handler(text)
         }
         
-        self.dismiss(animated: true, completion: nil)
-     //   performSegue(withIdentifier: "addCatSegue", sender: nil)
+//        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
 
