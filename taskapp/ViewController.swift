@@ -46,11 +46,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
      
         searchCatPickerView.delegate = self
         searchCatPickerView.dataSource = self
-        
+        searchCatPickerView.reloadInputViews()
 
 //        createPickerView()
     }
 
+    
 //PickerView
     
     // picker view
@@ -269,6 +270,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        searchCatPickerView.reloadInputViews()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        searchCatPickerView.reloadAllComponents()
+    }
+    
 }
 
