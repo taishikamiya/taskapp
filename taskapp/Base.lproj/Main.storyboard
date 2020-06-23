@@ -58,13 +58,15 @@
                                 </prototypes>
                             </tableView>
                             <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZP-0B-dd8">
-                                <rect key="frame" x="47" y="646" width="320" height="216"/>
+                                <rect key="frame" x="0.0" y="646" width="414" height="216"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="aZP-0B-dd8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7LI-Xv-Bnd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aZP-0B-dd8" secondAttribute="trailing" id="9W6-Ko-zND"/>
+                            <constraint firstItem="aZP-0B-dd8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JI1-KR-Ics"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8sH-eJ-6Nm" secondAttribute="bottom" id="S2T-vx-fzb"/>
                             <constraint firstItem="aZP-0B-dd8" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="TRa-CS-8GH"/>
                             <constraint firstItem="8sH-eJ-6Nm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="feQ-DB-pZv"/>
@@ -261,6 +263,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Kzt-9w-0AU"/>
+        <segue reference="tFH-92-T09"/>
     </inferredMetricsTieBreakers>
 </document>
