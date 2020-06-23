@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,8 +21,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var cat = try! Realm().objects(Category.self)
     
-    var pickerView:  UIPickerView = UIPickerView()
+//    var pickerView:  UIPickerView = UIPickerView()
     
+    @IBOutlet weak var searchCatPickerView: UIPickerView!
     
     //DB内のタスクが格納されるリスト
     //日付の近い順でソート：昇順
@@ -42,15 +44,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         searchBar.showsCancelButton =  true
 //        searchBar.showsSearchResultsButton = true
      
-        createPickerView()
+        searchCatPickerView.delegate = self
+        searchCatPickerView.dataSource = self
+        
+
+//        createPickerView()
     }
 
 //PickerView
     
     // picker view
-        func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            return 1
-        }
+    
+  //      func numberOfComponents(in pickerView: UIPickerView) -> Int {
+   //         return 1
+    //    }
         
         func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
             return cat.count
@@ -64,11 +71,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         searchBar.text = cat[row].categoryName
         }
     
+/*
     func createPickerView(){
-        pickerView.delegate = self
+        //        pickerView.delegate = self
+        
         //ここが解決してない。searchBarをタップしてpickerを表示したい。
-//        searchBar.inputView = self.pickerView
-
+        //searchBar.inputView = self.pickerView
+        
         //toolbar
         let toolbar = UIToolbar()
         toolbar.frame =  CGRect(x:0, y:0, width:self.view.frame.width, height:44)
@@ -80,10 +89,53 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func donePicker() {
         searchBar.endEditing(true)
     }
+ */
     
+    @objc func dismissKeyboard() {
+        //キーボードを閉じる
+        view.endEditing(true)
+    }
+    ///searchCategoryPickerView定義
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func searchCatPickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            return cat.count
+    }
+
+    func searchCatPickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+            return cat[row].categoryName
+    }
+        
+    func searchCatPickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        searchBar.text = cat[row].categoryName
+
+        searchText = searchBar.text!
+
+        // フィルターされた結果を取得
+        taskArray = try!  Realm().objects(Task.self).filter("category==%@", searchText!)
+        tableView.reloadData()
+    }
+
+    // searchBarがタップされたとき
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        dismissKeyboard()
+        searchCatPickerView.isHidden = false;
+     //   createPickerView()
+    }
+    
+    // searchBarを終了したとき
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        dismissKeyboard()
+        searchCatPickerView.isHidden = true;
+    }
     
     // xボタンが押されたときの処理
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        searchCatPickerView.isHidden = true;
+
         if searchText.isEmpty {
             taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true)
             tableView.reloadData()
@@ -92,6 +144,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //検索
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchCatPickerView.isHidden = true;
+
         self.view.endEditing(true)
         searchText = searchBar.text!
 
@@ -102,6 +156,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        dismissKeyboard()
+        searchCatPickerView.isHidden = true;
+
         taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true)
         tableView.reloadData()
     }
